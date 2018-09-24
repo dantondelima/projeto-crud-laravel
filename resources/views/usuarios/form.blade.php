@@ -3,7 +3,7 @@
 
 <div class="container">
       <h2>Cadastro de pessoa</h2><br/>
-      <form  action="/usuarios/adiciona">
+      <form  action="/usuarios/adiciona" method="post" enctype="multipart/form-data">
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
@@ -21,7 +21,14 @@
           <div class="row">
           <div class="col-md-4"></div>
             <div class="form-group col-md-4">
-              <label for="Email">Categoria:</label>
+              <label for="Data">Data:</label>
+              <input type="date" class="form-control" name="data_nasc">
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-4"></div>
+            <div class="form-group col-md-4">
+              <label for="Categoria">Categoria:</label>
               <select name="id_categoria">
               @foreach($categoria as $categoria)
                 <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
@@ -29,12 +36,12 @@
               </select>
             </div>
           </div>
-        <!--<div class="row">
+        <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
-            <input type="file" name="foto">    
+            <input type="file" name="imagem">    
          </div>
-        </div> !-->
+        </div>
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4" style="margin-top:60px">

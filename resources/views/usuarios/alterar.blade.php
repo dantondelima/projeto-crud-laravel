@@ -25,10 +25,20 @@
             <input type="file" name="filename">    
          </div>
         </div> !-->
+        <div class="col-md-4"></div>
+            <div class="form-group col-md-4">
+              <label for="Email">Categoria:</label>
+              <select name="id_categoria">
+              @foreach($categoria as $categoria)
+                <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
+              @endforeach
+              </select>
+            </div>
+          </div>
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4" style="margin-top:60px">
-            <button type="submit" class="btn btn-success">Adicionar</button>
+            <button type="submit" class="btn btn-success">Alterar</button>
           </div>
         </div>
 

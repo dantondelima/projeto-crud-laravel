@@ -23,4 +23,9 @@ class Categoria extends Model
      *
      * @var array
      */
+
+    public function usuarios()
+    {
+        return $this->hasMany('App\User', 'id_categoria', 'id');
+    }
 }
