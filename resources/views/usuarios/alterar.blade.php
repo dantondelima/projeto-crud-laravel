@@ -12,6 +12,7 @@
             <input type="text" class="form-control" name="nome" value="{{$pessoal->nome}}">
           </div>
         </div>
+        
         <div class="row">
           <div class="col-md-4"></div>
             <div class="form-group col-md-4">
@@ -19,12 +20,6 @@
               <input type="text" class="form-control" name="email" value="{{$pessoal->email}}">
             </div>
           </div>
-        <!--<div class="row">
-          <div class="col-md-4"></div>
-          <div class="form-group col-md-4">
-            <input type="file" name="filename">    
-         </div>
-        </div> !-->
         <div class="col-md-4"></div>
             <div class="form-group col-md-4">
               <label for="Email">Categoria:</label>
@@ -33,6 +28,13 @@
                 <option value="{{$categoria->id}}">{{$categoria->categoria}}</option>
               @endforeach
               </select>
+            </div>
+          </div>
+          <div class="row">
+          <div class="col-md-4"></div>
+            <div class="form-group col-md-4">
+              <label for="Data">Data:</label>
+              <input type="date" class="form-control" name="data_nasc">
             </div>
           </div>
         <div class="row">

@@ -14,7 +14,7 @@ class User extends Model
      */
 
     protected $fillable = [
-        'nome', 'email', 'id_categoria'
+        'nome', 'email', 'data_nasc', 'id_categoria', 
     ];
 
     public $timestamps = false;

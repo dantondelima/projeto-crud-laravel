@@ -3,7 +3,8 @@
 
 <div class="container">
       <h2>Cadastro de pessoa</h2><br/>
-      <form  action="/usuarios/adiciona" method="post" enctype="multipart/form-data">
+      <form  action="/usuarios/adiciona" >
+      @csrf
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
@@ -39,8 +40,9 @@
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
-            <input type="file" name="imagem">    
+            <input type="file" name="imagem">
          </div>
+
         </div>
         <div class="row">
           <div class="col-md-4"></div>
