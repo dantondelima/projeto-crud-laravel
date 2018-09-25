@@ -72,9 +72,9 @@
 
                 <div class="links">
                     <a href="{{ route('usuarios.lista')}}">Listar usuários</a>
-                    <a href="https://laracasts.com">Cadastrar usuários</a>
-                    <a href="https://laravel-news.com">Listar categorias</a>
-                    <a href="https://nova.laravel.com">Cadastrar categorias</a>
+                    <a href="{{ route('usuarios.novo')}}">Cadastrar usuários</a>
+                    <a href="{{ route('categorias.lista')}}">Listar categorias</a>
+                    <a href="{{ route('categorias.nova')}}">Cadastrar categorias</a>
                 </div>
             </div>
         </div>

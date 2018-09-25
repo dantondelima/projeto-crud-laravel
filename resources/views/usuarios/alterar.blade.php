@@ -3,7 +3,7 @@
 
 <div class="container">
       <h2>Alteração de registro</h2><br/>
-      <form  action="{{ route('usuarios.alterando', $pessoal->id)}}" method="post">
+      <form  action="{{ route('usuarios.alterando', $pessoal->id)}}" method="post" enctype="multipart/form-data">
       @csrf
         <div class="row">
           <div class="col-md-4"></div>
@@ -34,9 +34,15 @@
           <div class="col-md-4"></div>
             <div class="form-group col-md-4">
               <label for="Data">Data:</label>
-              <input type="date" class="form-control" name="data_nasc">
+              <input type="date" class="form-control" name="data_nasc" value="{{$pessoal->data_nasc}}">
             </div>
           </div>
+          <div class="row">
+          <div class="col-md-4"></div>
+            <div class="form-group col-md-4">
+              <input type="file" name="imagem"> 
+          </div>
+        </div>
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4" style="margin-top:60px">

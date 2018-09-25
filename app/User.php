@@ -16,7 +16,7 @@ class User extends Model
      */
 
     protected $fillable = [
-        'nome', 'email', 'data_nasc', 'id_categoria', 'img',
+        'nome', 'email', 'data_nasc', 'id_categoria', 'img', 'thumb',
     ];
 
     public $timestamps = false;
@@ -31,4 +31,12 @@ class User extends Model
         $dados['img'] = $this->uploadFile($imagem, '/users', true);
         return $this->create($dados);
     }
+
 }
+
+/*
+$pessoa->nome=$request->nome;
+        $pessoa->email=$request->email;
+        $pessoa->id_categoria=$request->id_categoria;
+        $pessoa->data_nasc=$request->data_nasc;
+        */

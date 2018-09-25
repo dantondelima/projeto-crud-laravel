@@ -9,7 +9,7 @@ use App\Categoria;
 class CategoriasController extends Controller
 {
     public function lista() {
-        $categorias = Categoria::all();
+        $categorias = Categoria::orderBy('id', 'desc')->get();
         return view('categorias.listagem', compact('categorias'));
         
     }
