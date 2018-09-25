@@ -3,7 +3,7 @@
 
 <div class="container">
       <h2>Cadastro de pessoa</h2><br/>
-      <form  action="/usuarios/adiciona" >
+      <form method="post" action="{{ route('usuarios.notifica-novo') }}" enctype="multipart/form-data">
       @csrf
         <div class="row">
           <div class="col-md-4"></div>

@@ -3,9 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\FileService;
 
 class User extends Model
 {
+    use FileService;
 
     /**
      * The attributes that are mass assignable.
@@ -14,7 +16,7 @@ class User extends Model
      */
 
     protected $fillable = [
-        'nome', 'email', 'data_nasc', 'id_categoria', 
+        'nome', 'email', 'data_nasc', 'id_categoria', 'img',
     ];
 
     public $timestamps = false;
@@ -23,4 +25,10 @@ class User extends Model
      *
      * @var array
      */
+
+    public function criarUsuario($dados, $imagem)
+    {
+        $dados['img'] = $this->uploadFile($imagem, '/users', true);
+        return $this->create($dados);
+    }
 }

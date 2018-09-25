@@ -8,7 +8,7 @@ use Intervention\Image\Facades\Image;
 
 class ImageRepository extends Controller
 {
-    public function saveImage($image, $id, $type, $size)
+    public function saveImage($image, $size)
     {
         if (!is_null($image))
         {

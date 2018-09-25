@@ -5,7 +5,9 @@
         <tr>
           <td>Nome:  {{$p->nome}} </td>
           <td>email: {{$p->email}} </td>
+          <td>Data de nascimento: {{$p->data_nasc}} </td>
           <td>categoria: {{$p->categoria}}</td>
+          <td>Foto: <img src="{{asset('public/uploads/'.$p->img)}}"></td>
           <td>
             <a href="{{ route('usuarios.alterar', $p->id)}}">Alterar</a>
           </td>

@@ -1,10 +1,14 @@
 <?php
 
+Route::get('/', function(){
+    return view('welcome');
+});
+
 //usuarios
 Route::get('/usuarios','UsuariosController@lista')->name('usuarios.lista');
 Route::get('/usuarios/{id}/detalhes/', 'UsuariosController@mostra')->name('usuarios.detalhes');
 Route::get('/usuarios/form', 'UsuariosController@novo')->name('usuarios.novo');
-Route::get('/usuarios/adiciona', 'UsuariosController@adicionado')->name('usuarios.notifica-novo');
+Route::post('/usuarios/adiciona', 'UsuariosController@adicionado')->name('usuarios.notifica-novo');
 Route::get('/usuarios/{id}/alterar', 'UsuariosController@alter')->name('usuarios.alterar');
 Route::post('/usuarios/{id}', 'UsuariosController@altera')->name('usuarios.alterando');
 Route::get('/usuarios/alterado', function () {
