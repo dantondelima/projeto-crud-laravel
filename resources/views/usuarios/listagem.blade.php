@@ -1,21 +1,26 @@
 @extends('principal')
 @section('conteudo')
-   <table class="table">
+   <table class="table table-bordered">
      @foreach($pessoal as $p)
         <tr>
-          <td style="border: 1px solid black">Nome:  {{$p->nome}} </td>
-          <td style="border: 1px solid black">email: {{$p->email}} </td>
-          <td style="border: 1px solid black">Data de nascimento: {{$p->data_nasc}} </td>
-          <td style="border: 1px solid black">categoria: {{$p->categoria}}</td>
-          <td style="border: 1px solid black">Foto: <img src="{{ $p->thumb}}"></td>
-          <td style="border: 1px solid black">
+          <td>Nome:  {{$p->nome}} </td>
+          <td>email: {{$p->email}} </td>
+          <td>Data de nascimento: {{ date('d/m/Y', strtotime($p->data_nasc)) }} </td>
+          <td>categoria: {{$p->categoria}}</td>
+          <td>Foto: <img src="{{ $p->thumb}}"></td>
+          <td>
             <a href="{{ route('usuarios.alterar', $p->id)}}">Alterar</a>
           </td>
-          <td style="border: 1px solid black">
+          <td>
             <a href="{{ route('usuarios.excluir', $p->id)}}">Excluir</a>
           </td>
           
         </tr>
      @endforeach
     </table>
+    @if(session('msg'))
+      <div class="alert alert-success">
+          <p>{{session('msg')}}</p>
+      </div>
+    @endif
 @stop

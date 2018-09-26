@@ -11,7 +11,6 @@ class CategoriasController extends Controller
     public function lista() {
         $categorias = Categoria::orderBy('id', 'desc')->get();
         return view('categorias.listagem', compact('categorias'));
-        
     }
 
     public function nova() {
@@ -19,9 +18,16 @@ class CategoriasController extends Controller
     }
 
     public function adicionadaCategoria(Request $request) {
+        $categorias = Categoria::orderBy('id', 'desc')->get();
         $categorias = new Categoria(['categoria'=>$request->get('categoria'),]);
+        /*if($categorias == $categorias->categoria)
+        {
+            return back()->with($errors, 'Categoria já cadastrada');
+        }
+        else{}*/
         $categorias->save();
-        return view('categorias.adicionado', compact('categorias'));
+        return back()->with('msg', 'Categoria cadastrada com sucesso');
+        
     }
 
     public function alter($id) {
@@ -31,9 +37,9 @@ class CategoriasController extends Controller
 
     public function altera(Request $request, $id) {
         $categorias = Categoria::findOrFail($id);
-        $categorias->categoria=$request->categoria;
+        $categorias->categoria = $request->categoria;
         $categorias->save();
-        return view('categorias.alterado');
+        return redirect('/categorias')->with('msg', 'Categoria alterada com sucesso');
     }
 
     public function excluir(Request $request, $id){
@@ -44,6 +50,6 @@ class CategoriasController extends Controller
         }
 
         $categoria->delete();
-        return view('categorias.excluido');
+        return redirect('/categorias')->with('msg', 'Categoria excluida com sucesso');
     }
 }

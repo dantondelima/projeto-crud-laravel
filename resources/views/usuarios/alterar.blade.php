@@ -49,5 +49,9 @@
             <button type="submit" class="btn btn-success">Alterar</button>
           </div>
         </div>
-
+      @if(session('msg'))
+        <div class="alert alert-success">
+          <p>{{session('msg')}}</p>
+        </div>
+      @endif
 @stop

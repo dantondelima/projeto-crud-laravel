@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Product;
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\User;
 use App\Categoria;
 use App\Http\Controllers\ImageRepository;
-use App\FileService;
-use File;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\enviarEmail;
 
 class UsuariosController extends Controller
 {
-    use FileService;
     public function lista() {
         $pessoal = User::select('users.id', 'nome', 'email', 'data_nasc', 'categoria', 'thumb')->join('categorias', 'categorias.id', '=', 'id_categoria')->orderBy('users.id', 'desc')->get();
         return view('usuarios.listagem', compact('pessoal'));
@@ -26,6 +23,8 @@ class UsuariosController extends Controller
     
     public function adicionado(Request $request, ImageRepository $repo, User $users) 
     {
+        $this->validacao($request);
+
         if ($request->hasFile('imagem')) {
             $userImagem = $repo->saveImage($request->imagem);
         }
@@ -41,7 +40,13 @@ class UsuariosController extends Controller
         $users->thumb = $userImagemThum;
         $users->id_categoria = $request->get('id_categoria');
         $users->save();
-        return back()->with('msg', 'Usuário '.$request->input('nome').' cadastrado com sucesso');
+        Mail::send('emails.email', [], function($message){
+            $message->to('danton.lima@kbrtec.com.br');
+            $message->subject('Assunto do email');
+            $message->from('smtp@kbrtec.com.br');
+        });
+
+        return back()->with('mensagem', 'Usuário cadastrado com sucesso');
     }
 
     public function alter($id) {
@@ -66,17 +71,24 @@ class UsuariosController extends Controller
         else {
             dd($userImagem);
         }
-        
-        
 
         $users->id_categoria = $request->get('id_categoria');
         $users->save();
-        return view('usuarios.alterado');
+        return back()->with('msg', 'Usuário alterado com sucesso');
     }
 
     public function excluir(Request $request, $id){
         $pessoa = User::findOrFail($id);
         $pessoa->delete();
-        return back()->with('msg', 'cadastrado com sucesso');
+        return back()->with('msg', 'excluido com sucesso');
+    }
+
+    public function validacao(Request $request){
+        $this->validate($request, [
+            'nome' => 'required|max:255',
+            'email' => 'required|max:255',
+            'data_nasc' => 'required',
+            'imagem' => 'required'
+        ], ['nome.required'=> 'O campo nome deve ser preenchido', 'email.required'=> 'O campo email deve ser preenchido', 'data_nasc.required'=> 'O campo data de nascimento deve ser preenchido','imagem.required'=> 'O campo imagem deve ser preenchido']);
     }
 }
