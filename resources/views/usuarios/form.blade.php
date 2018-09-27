@@ -6,7 +6,7 @@
   }
 </style>
 <div class="container">
-      <h2>Cadastro de pessoa</h2><br/>
+      <h2 class="text-center">Cadastro de pessoa</h2><br/>
       <form method="post" action="{{ route('usuarios.notifica-novo') }}" enctype="multipart/form-data">
       @csrf
         <div class="row">
@@ -36,7 +36,7 @@
               <label for="Categoria">Categoria:</label>
               <select name="id_categoria">
               @foreach($categoria as $categoria)
-                <option @if(old('categoria')==$categoria->id) {{'selected="selected"'}} @endif value="{{ $categoria->id }}"> {{$categoria->categoria}}</option>
+                <option class="form-control" @if(old('categoria')==$categoria->id) {{'selected="selected"'}} @endif value="{{ $categoria->id }}"> {{$categoria->categoria}}</option>
               @endforeach
               </select>
             </div>

@@ -21,7 +21,7 @@
             }
 
             .full-height {
-                height: 20vh;
+                height: 100vh;
             }
 
             .flex-center {
@@ -67,7 +67,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title m-b-md">
-                    Crud
+                    Crud Laravel - Danton de Lima
                 </div>
 
                 <div class="links">
@@ -79,4 +79,6 @@
             </div>
         </div>
     </body>
+
+    
 </html>

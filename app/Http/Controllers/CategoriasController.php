@@ -52,4 +52,10 @@ class CategoriasController extends Controller
         $categoria->delete();
         return redirect('/categorias')->with('msg', 'Categoria excluida com sucesso');
     }
+
+    public function validacao(Request $request){
+        $this->validate($request, [
+            'categoria' => 'required|max:255|unique:categorias,categoria',
+        ], ['categoria.required'=> 'O campo categoria deve ser preenchido', 'categoria.unique'=> 'A categoria já existe']);
+    }
 }

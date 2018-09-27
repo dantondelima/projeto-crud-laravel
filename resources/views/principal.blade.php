@@ -25,12 +25,13 @@
 
             .flex-center {
                 align-items: center;
-                height:200px;
-                margin-top: -25px;
+                height:100px;
+                margin-top: 5px;
                 margin-bottom: 25px;
                 display: flex;
                 border-bottom:1px solid black;
                 justify-content: center;
+                width:100%;
             }
 
             .position-ref {
@@ -49,17 +50,19 @@
 
             .title {
                 font-size: 64px;
+                position:relative;
             }
 
             .links > a {
                 color: #636b6f;
                 padding: 0 25px;
-                font-size: 22px;
+                font-size: 25px;
                 font-weight: 999;
                 letter-spacing: .1rem;
                 text-transform: uppercase;
                 color: #636b6f;
                 font-family: 'Nunito', sans-serif;
+                margin-right:-15px;
             }
 
             .m-b-md {
@@ -80,18 +83,15 @@
 <body>
 <div class="flex-center position-ref full-height">
             <div class="content">
-                <div class="title m-b-md">
-                    Crud
-                </div>
-
                 <div class="links">
-                    <a href="{{ route('usuarios.lista')}}" class="lista">Listar usuários</a>
+                    <a href="{{ route('usuarios.lista')}}">Listar usuários</a>
                     <a href="{{ route('usuarios.novo')}}">Cadastrar usuários</a>
                     <a href="{{ route('categorias.lista')}}">Listar categorias</a>
                     <a href="{{ route('categorias.nova')}}">Cadastrar categorias</a>
                 </div>
             </div>
         </div>
+        
 @yield('conteudo')
 </body>
 </html>

@@ -40,8 +40,11 @@ class UsuariosController extends Controller
         $users->thumb = $userImagemThum;
         $users->id_categoria = $request->get('id_categoria');
         $users->save();
-        Mail::send('emails.email', [], function($message){
-            $message->to('danton.lima@kbrtec.com.br');
+
+        $enviar = new EnviarEmail( $request->get('email'), $request->get('nome'));
+        $enviar->build();
+        Mail::send('emails.email', ['user'=> $users], function($message){
+            $message->to($request->get('email'));
             $message->subject('Assunto do email');
             $message->from('smtp@kbrtec.com.br');
         });
@@ -57,6 +60,7 @@ class UsuariosController extends Controller
 
     public function altera(Request $request, $id, ImageRepository $repo) {
         $users = User::findOrFail($id);
+        $this->validacao($request);
         $users->nome = $request->get('nome');
         $users->email = $request->get('email');
         $users->data_nasc = $request->get('data_nasc'); 
@@ -65,7 +69,7 @@ class UsuariosController extends Controller
             $repo->apagarImages($users->img, $users->thumb);
             $userImagem = $repo->saveImage($request->imagem);
             $users->img = $userImagem;
-            $userImagemThum = $repo->saveImageThumbnail($request->imagem, 150);
+            $userImagemThum = $repo->saveImageThumbnail($request->imagem, 100);
             $users->thumb = $userImagemThum;
         }
         else {

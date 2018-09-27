@@ -48,7 +48,7 @@ public function saveImage($image)
     
     public function apagarImages($foto, $fotothun)
     {
-        unlink(public_path($foto));
-        unlink(public_path($fotothun));
+        unlink(public_path('uploads/users/'.$foto));
+        unlink(public_path('uploads/users/thumbnail/'.$fotothun));
     }
 }

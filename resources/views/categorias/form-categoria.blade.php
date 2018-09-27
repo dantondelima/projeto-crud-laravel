@@ -2,12 +2,12 @@
 @section('conteudo')
 
 <div class="container">
-      <h2>Cadastro de categoria</h2><br/>
+      <h2 class="text-center">Cadastro de categoria</h2><br/>
       <form  action="/categorias/adiciona-categoria">
         <div class="row">
           <div class="col-md-4"></div>
           <div class="form-group col-md-4">
-            <label for="Nome">Categoria:</label>
+            <label for="Nome">Nome:</label>
             <input type="text" class="form-control" name="categoria">
           </div>
         </div>

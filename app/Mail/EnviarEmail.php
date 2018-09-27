@@ -16,9 +16,10 @@ class EnviarEmail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($email, $nome)
     {
-        //
+        $this->email = $email;
+        $this->nome = $nome;
     }
 
     /**
@@ -27,7 +28,14 @@ class EnviarEmail extends Mailable
      * @return $this
      */
     public function build()
-    {
-        return $this->view('emails.email');
+    {   
+        $nome = ['nome' => $this->nome];
+        $envio = Mail::send('emails.email', $nome, function($message){
+            $message->to($this->email);
+            $message->subject($this->mensagem.' '.$this->nome);
+            $message->from('smtp@kbrtec.com.br');
+        });
+        $erros = Mail::failures();
+        return $erros;
     }
 }
